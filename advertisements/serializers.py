@@ -39,8 +39,9 @@ class AdvertisementSerializer(serializers.ModelSerializer):
 
     def validate(self, data):
         """Метод для валидации. Вызывается при создании и обновлении."""
+        lenth = len(Advertisement.objects.filter(status='OPEN').filter(creator=self.context['request'].user))
 
-        if Advertisement.objects.filter(creator=self.context["request"].user).filter(status='OPEN').count() > 10:
+        if lenth > 10:
             raise serializers.ValidationError('Too many posts. Close one before create')
 
         return data

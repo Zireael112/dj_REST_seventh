@@ -8,3 +8,4 @@ class AdvertisementFilter(filters.FilterSet):
     class Meta:
         model = Advertisement
         fields = ['title', 'status', 'created_at']
+
